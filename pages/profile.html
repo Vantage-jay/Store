@@ -4,60 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile - FarmFresh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
     <style>
         .profile-container {
             max-width: 600px;
-            margin: 2rem auto;
+            margin: 5rem auto 5rem;
             padding: 1rem;
         }
-        
+
         .profile-header {
-            background: linear-gradient(135deg, #16a34a, #22c55e);
+            background: linear-gradient(135deg, #15803d, #16a34a, #22c55e);
             color: white;
             padding: 2rem;
             border-radius: 16px;
             text-align: center;
             margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
         }
-        
+
         .profile-avatar {
-            width: 80px;
-            height: 80px;
+            width: 85px;
+            height: 85px;
             background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
             margin: 0 auto 1rem;
+            border: 3px solid rgba(255,255,255,0.5);
         }
-        
+
+        .profile-avatar i {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
         .profile-name {
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 0.25rem;
         }
-        
+
         .profile-email {
             opacity: 0.9;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
         }
-        
+
+        .profile-phone {
+            opacity: 0.85;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
         .profile-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
             background: rgba(255,255,255,0.2);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
+            padding: 0.3rem 0.875rem;
+            border-radius: 50px;
             font-size: 0.75rem;
-            margin-top: 0.5rem;
+            font-weight: 600;
+            margin-top: 0.25rem;
         }
-        
+
+        /* Menu */
         .menu-grid {
             display: grid;
             gap: 0.75rem;
+            margin-bottom: 1rem;
         }
-        
+
         .menu-item {
             background: white;
             padding: 1rem 1.25rem;
@@ -69,13 +95,16 @@
             color: var(--text);
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             transition: all 0.2s;
+            border: 1px solid var(--border);
+            cursor: pointer;
         }
-        
+
         .menu-item:hover {
             transform: translateX(4px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-color: var(--primary);
         }
-        
+
         .menu-icon {
             width: 44px;
             height: 44px;
@@ -84,27 +113,155 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            color: var(--primary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
         }
-        
-        .menu-text {
-            flex: 1;
-        }
-        
+
+        .menu-text { flex: 1; }
+
         .menu-text strong {
             display: block;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.2rem;
+            font-size: 0.95rem;
         }
-        
+
         .menu-text span {
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             color: var(--text-light);
         }
-        
+
         .menu-arrow {
             color: var(--text-light);
+            font-size: 0.9rem;
         }
-        
+
+        /* Panel (slide-in section) */
+        .panel {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+            animation: slideDown 0.2s ease;
+        }
+
+        .panel.open { display: block; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .panel h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text);
+        }
+
+        .panel h3 i { color: var(--primary); }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.4rem;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .save-btn {
+            width: 100%;
+            padding: 0.875rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .save-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Addresses */
+        .address-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .address-card p {
+            font-size: 0.875rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .address-card .default-tag {
+            font-size: 0.7rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.2rem 0.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .delete-addr {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        /* Logout */
         .logout-btn {
             width: 100%;
             padding: 1rem;
@@ -112,59 +269,93 @@
             color: #ef4444;
             border: none;
             border-radius: 12px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            margin-top: 1.5rem;
+            margin-top: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            transition: all 0.2s;
         }
-        
+
+        .logout-btn:hover {
+            background: #fecaca;
+        }
+
+        /* Guest */
         .guest-notice {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 4rem 1rem;
+            background: white;
+            border-radius: 16px;
         }
-        
-        .guest-notice-icon {
-            font-size: 4rem;
+
+        .guest-notice i {
+            font-size: 3rem;
+            color: var(--border);
             margin-bottom: 1rem;
         }
+
+        .guest-notice h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .guest-notice p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .login-now-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .success-msg {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
     </style>
-    <script defer src="/_vercel/insights/script.js"></script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
-    <nav class="navbar" style="position: relative;">
+
+    <!-- Navbar -->
+    <nav class="navbar">
         <div class="nav-brand">
-            <div class="logo-badge">🌾</div>
-            <span class="brand-name">FarmFresh</span>
+            <div class="logo-badge"><i class="fas fa-seedling"></i></div>
+            <div class="brand-text">
+                <span class="brand-name">FarmFresh</span>
+                <span class="brand-tag">Premium Farm Produce</span>
+            </div>
         </div>
-        <a href="../index.html" style="color: #64748b; text-decoration: none;">← Back</a>
+        <a href="../index.html" style="color: var(--text-light); text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 0.4rem;">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
     </nav>
 
-    <main class="profile-container" id="profile-content">
-        <!-- Content loaded by JavaScript -->
-    </main>
+    <main class="profile-container" id="profile-content"></main>
 
     <!-- Mobile Nav -->
     <nav class="mobile-nav">
-        <a href="../index.html" class="mobile-link">
-            <span>🏠</span>
-            <span>Home</span>
-        </a>
-        <a href="products.html" class="mobile-link">
-            <span>🛍️</span>
-            <span>Shop</span>
-        </a>
-        <a href="cart.html" class="mobile-link">
-            <span>🛒</span>
-            <span>Cart</span>
-        </a>
-        <a href="profile.html" class="mobile-link active">
-            <span>👤</span>
-            <span>Profile</span>
-        </a>
+        <a href="../index.html" class="mobile-link"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="products.html" class="mobile-link"><i class="fas fa-store"></i><span>Shop</span></a>
+        <a href="cart.html" class="mobile-link"><i class="fas fa-shopping-cart"></i><span>Cart</span></a>
+        <a href="profile.html" class="mobile-link active"><i class="fas fa-user"></i><span>Profile</span></a>
     </nav>
 
     <script src="../js/auth.js"></script>
@@ -172,94 +363,219 @@
         function loadProfile() {
             const container = document.getElementById('profile-content');
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            
+
             if (!currentUser) {
-                // Not logged in - show guest notice
                 container.innerHTML = `
                     <div class="guest-notice">
-                        <div class="guest-notice-icon">🔒</div>
+                        <i class="fas fa-lock"></i>
                         <h2>Not Logged In</h2>
-                        <p style="color: #64748b; margin: 1rem 0;">Please login to view your profile</p>
-                        <a href="login.html" style="display: inline-block; padding: 0.875rem 1.5rem; background: #22c55e; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">Login Now</a>
+                        <p>Please login to view your profile</p>
+                        <a href="login.html" class="login-now-btn">
+                            <i class="fas fa-sign-in-alt"></i> Login Now
+                        </a>
                     </div>
                 `;
                 return;
             }
-            
-            // Get role
+
             const isAdmin = auth.isAdmin();
-            const roleBadge = isAdmin ? '⭐ Admin' : '👤 Customer';
-            
+            const roleBadge = isAdmin
+                ? '<i class="fas fa-shield-alt"></i> Admin'
+                : '<i class="fas fa-user"></i> Customer';
+
             container.innerHTML = `
+                <!-- Profile Header -->
                 <div class="profile-header">
-                    <div class="profile-avatar">👤</div>
-                    <div class="profile-name">${currentUser.name}</div>
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-name" id="display-name">${currentUser.name}</div>
                     <div class="profile-email">${currentUser.email}</div>
+                    <div class="profile-phone" id="display-phone">
+                        ${currentUser.phone ? `<i class="fas fa-phone"></i> ${currentUser.phone}` : ''}
+                    </div>
                     <span class="profile-badge">${roleBadge}</span>
                 </div>
-                
+
+                <!-- Menu Items -->
                 <div class="menu-grid">
+
                     <a href="order-history.html" class="menu-item">
-                        <div class="menu-icon">📦</div>
+                        <div class="menu-icon"><i class="fas fa-box"></i></div>
                         <div class="menu-text">
                             <strong>My Orders</strong>
                             <span>View order history & track deliveries</span>
                         </div>
-                        <span class="menu-arrow">→</span>
+                        <i class="fas fa-chevron-right menu-arrow"></i>
                     </a>
-                    
+
                     <a href="cart.html" class="menu-item">
-                        <div class="menu-icon">🛒</div>
+                        <div class="menu-icon"><i class="fas fa-shopping-cart"></i></div>
                         <div class="menu-text">
                             <strong>Shopping Cart</strong>
                             <span>View items in your cart</span>
                         </div>
-                        <span class="menu-arrow">→</span>
+                        <i class="fas fa-chevron-right menu-arrow"></i>
                     </a>
-                    
-                    <a href="#" class="menu-item" onclick="alert('Edit profile coming soon!'); return false;">
-                        <div class="menu-icon">✏️</div>
+
+                    <div class="menu-item" onclick="togglePanel('edit-panel')">
+                        <div class="menu-icon"><i class="fas fa-pen"></i></div>
                         <div class="menu-text">
                             <strong>Edit Profile</strong>
-                            <span>Update your information</span>
+                            <span>Update your name and phone number</span>
                         </div>
-                        <span class="menu-arrow">→</span>
-                    </a>
-                    
-                    <a href="#" class="menu-item" onclick="alert('Addresses coming soon!'); return false;">
-                        <div class="menu-icon">📍</div>
+                        <i class="fas fa-chevron-right menu-arrow" id="edit-arrow"></i>
+                    </div>
+
+                    <!-- Edit Profile Panel -->
+                    <div class="panel" id="edit-panel">
+                        <h3><i class="fas fa-pen"></i> Edit Profile</h3>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="edit-name" value="${currentUser.name}" placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="edit-phone" value="${currentUser.phone || ''}" placeholder="+234 801 234 5678">
+                        </div>
+                        <button class="save-btn" onclick="saveProfile()">
+                            <i class="fas fa-check"></i> Save Changes
+                        </button>
+                        <div class="success-msg" id="edit-success">
+                            <i class="fas fa-check-circle"></i> Profile updated successfully!
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="togglePanel('address-panel')">
+                        <div class="menu-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="menu-text">
                             <strong>Delivery Addresses</strong>
-                            <span>Manage delivery locations</span>
+                            <span>Manage your delivery locations</span>
                         </div>
-                        <span class="menu-arrow">→</span>
-                    </a>
-                    
+                        <i class="fas fa-chevron-right menu-arrow" id="address-arrow"></i>
+                    </div>
+
+                    <!-- Addresses Panel -->
+                    <div class="panel" id="address-panel">
+                        <h3><i class="fas fa-map-marker-alt"></i> Delivery Addresses</h3>
+                        <div id="address-list"></div>
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <label>Add New Address</label>
+                            <textarea id="new-address" rows="3" placeholder="House number, street, area, city..."></textarea>
+                        </div>
+                        <button class="save-btn" onclick="saveAddress()">
+                            <i class="fas fa-plus"></i> Add Address
+                        </button>
+                        <div class="success-msg" id="address-success">
+                            <i class="fas fa-check-circle"></i> Address saved!
+                        </div>
+                    </div>
+
                     ${isAdmin ? `
-                    <a href="admin-products.html" class="menu-item" style="background: #fef3c7;">
-                        <div class="menu-icon" style="background: #f59e0b;">🛡️</div>
+                    <a href="admin-products.html" class="menu-item" style="background: #fef3c7; border-color: #f59e0b;">
+                        <div class="menu-icon" style="background: #fef3c7; color: #d97706;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
                         <div class="menu-text">
                             <strong>Admin Panel</strong>
-                            <span>Manage products & orders</span>
+                            <span>Manage products and orders</span>
                         </div>
-                        <span class="menu-arrow">→</span>
+                        <i class="fas fa-chevron-right menu-arrow"></i>
                     </a>
                     ` : ''}
                 </div>
-                
-                <button class="logout-btn" onclick="logout()">
-                    <span>🚪</span>
-                    <span>Logout</span>
+
+                <button class="logout-btn" onclick="auth.logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             `;
+
+            renderAddresses();
         }
-        
-        function logout() {
-            auth.logout();
+
+        function togglePanel(id) {
+            const panel = document.getElementById(id);
+            panel.classList.toggle('open');
         }
-        
-        // Load profile on page load
+
+        function saveProfile() {
+            const name = document.getElementById('edit-name').value.trim();
+            const phone = document.getElementById('edit-phone').value.trim();
+
+            if (!name) { alert('Please enter your name.'); return; }
+
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            currentUser.name = name;
+            currentUser.phone = phone;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+            // Update users array too
+            let users = JSON.parse(localStorage.getItem('users') || '[]');
+            const idx = users.findIndex(u => u.id === currentUser.id);
+            if (idx !== -1) {
+                users[idx].name = name;
+                users[idx].phone = phone;
+                localStorage.setItem('users', JSON.stringify(users));
+            }
+
+            // Update display
+            document.getElementById('display-name').textContent = name;
+            const phoneDisplay = document.getElementById('display-phone');
+            phoneDisplay.innerHTML = phone ? `<i class="fas fa-phone"></i> ${phone}` : '';
+
+            // Show success
+            const msg = document.getElementById('edit-success');
+            msg.style.display = 'flex';
+            setTimeout(() => { msg.style.display = 'none'; }, 3000);
+        }
+
+        function renderAddresses() {
+            const list = document.getElementById('address-list');
+            if (!list) return;
+
+            const addresses = JSON.parse(localStorage.getItem('userAddresses') || '[]');
+
+            if (addresses.length === 0) {
+                list.innerHTML = `<p style="color: var(--text-light); font-size: 0.875rem; margin-bottom: 1rem;">No saved addresses yet.</p>`;
+                return;
+            }
+
+            list.innerHTML = addresses.map((addr, i) => `
+                <div class="address-card">
+                    <div>
+                        <p>${addr}</p>
+                        ${i === 0 ? '<span class="default-tag">Default</span>' : ''}
+                    </div>
+                    <button class="delete-addr" onclick="deleteAddress(${i})" title="Remove">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function saveAddress() {
+            const input = document.getElementById('new-address');
+            const address = input.value.trim();
+            if (!address) { alert('Please enter an address.'); return; }
+
+            const addresses = JSON.parse(localStorage.getItem('userAddresses') || '[]');
+            addresses.push(address);
+            localStorage.setItem('userAddresses', JSON.stringify(addresses));
+
+            input.value = '';
+            renderAddresses();
+
+            const msg = document.getElementById('address-success');
+            msg.style.display = 'flex';
+            setTimeout(() => { msg.style.display = 'none'; }, 3000);
+        }
+
+        function deleteAddress(index) {
+            const addresses = JSON.parse(localStorage.getItem('userAddresses') || '[]');
+            addresses.splice(index, 1);
+            localStorage.setItem('userAddresses', JSON.stringify(addresses));
+            renderAddresses();
+        }
+
         loadProfile();
-    </script>
-</body>
-</html>
+    
