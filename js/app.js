@@ -28,7 +28,7 @@ const productDB = {
                 name: "Fresh Pepper",
                 price: 1500,
                 category: "Vegetables",
-                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400",
+                image: "https://i0.wp.com/ecofarmsandagroservices.com/wp-content/uploads/2021/12/IMG_20200208_142924.jpg?fit=1024%2C682&ssl=1",
                 description: "Hot and flavorful peppers, freshly picked. Perfect for soups, stews and spicy dishes.",
                 stock: 18,
                 unit: "kg",
