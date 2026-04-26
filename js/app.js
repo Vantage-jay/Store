@@ -183,7 +183,7 @@ function viewProduct(id) {
     if (!product) return;
     sessionStorage.setItem('currentProduct', JSON.stringify(product));
     // Works from both root and pages/ folder
-    window.location.href = 'pages/product-detail.html';
+    window.location.href = 'pages/product.html';
 }
 
 function filterCategory(category) {
