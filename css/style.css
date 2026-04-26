@@ -875,3 +875,38 @@ body {
         padding-bottom: 0;
     }
 }
+/* ===== OUT OF STOCK ===== */
+.out-of-stock-card {
+    opacity: 0.85;
+}
+
+.out-of-stock-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.out-of-stock-overlay span {
+    background: #ef4444;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-out-of-stock {
+    padding: 0.5rem 0.875rem;
+    background: #f1f5f9;
+    color: #94a3b8;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: not-allowed;
+    white-space: nowrap;
+    }
