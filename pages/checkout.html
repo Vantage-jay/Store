@@ -547,4 +547,18 @@
             // Clear cart
             localStorage.removeItem(cartKey);
 
+            const encoded = encodeURIComponent(message);
+            window.open(`${WHATSAPP_LINK}?text=${encoded}`, '_blank');
+
+            // Clear cart
+            localStorage.removeItem(cartKey);
+
+            setTimeout(() => { window.location.href = '../index.html'; }, 1000);
+        }
+
+        window.addEventListener('load', initCheckout);
+    </script>
+</body>
+</html>
+
      
